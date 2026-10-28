@@ -1,0 +1,47 @@
+<!doctype html>
+<!--
+  Kaspa Bets payment redirect.
+  Telegram inline buttons only accept http(s)/tg URLs, so the bot links here and this page
+  hands a kaspa:/kaspatest: payment URI to the wallet installed on the device (e.g. Kaspium).
+  Static page: no backend, no tracking, no cookies, no third-party requests.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta name="robots" content="noindex">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; base-uri 'none'; form-action 'none'">
+<title>Pay with a Kaspa wallet</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+  <h1>Kaspa payment</h1>
+  <div id="error" class="error" hidden>
+    <p><b>Invalid or missing payment link.</b></p>
+    <p>Go back to the Telegram bot and tap the payment button again.</p>
+  </div>
+  <div id="pay" hidden>
+    <p id="label" class="label" hidden></p>
+    <p id="net" class="net"></p>
+    <div class="row"><span class="k">Amount</span><span class="v"><b id="amount"></b> <span id="unit"></span></span></div>
+    <p class="hint">Send exactly this amount, down to the last digit.</p>
+    <div class="row"><span class="k">To</span><code id="addr" class="v"></code></div>
+    <a id="open" class="btn primary" href="#">Open in wallet</a>
+    <div class="two">
+      <button id="copy-addr" class="btn" type="button">Copy address</button>
+      <button id="copy-amount" class="btn" type="button">Copy amount</button>
+    </div>
+    <p id="toast" class="toast" aria-live="polite"></p>
+    <div id="qr" class="qr" aria-label="Payment QR code"></div>
+    <p class="note" id="testnet-note" hidden>Testnet: Kaspium only sees testnet-10 after you add a TN10 node
+      (Settings &rarr; Network / Node). tKAS has no value.</p>
+    <p class="note">Nothing opened? Make sure a Kaspa wallet is installed and set to the same network,
+      or scan the QR code / copy the address and amount into any Kaspa wallet.</p>
+  </div>
+</main>
+<script src="vendor/qrcode.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

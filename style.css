@@ -1,0 +1,21 @@
+*{box-sizing:border-box}
+body{font:16px/1.45 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;margin:0;background:#f6f8f7;color:#1d2321}
+main{max-width:30rem;margin:0 auto;padding:1.5rem 1rem 3rem}
+h1{font-size:1.4rem;margin:.2rem 0 1rem}
+.net{display:inline-block;background:#e3f6f0;color:#13795b;border-radius:1rem;padding:.2rem .7rem;font-size:.85rem;font-weight:600}
+.net.test{background:#fff4dc;color:#8a5a00}
+.label{font-weight:600;margin:.2rem 0 .6rem}
+.row{display:flex;gap:.6rem;align-items:baseline;margin:.6rem 0}
+.k{color:#66706c;min-width:4rem}
+.v{flex:1}
+#amount{font-size:1.5rem}
+code{word-break:break-all;background:#fff;border:1px solid #dfe5e2;padding:.3rem .4rem;border-radius:.4rem;font-size:.85rem}
+.hint{color:#66706c;font-size:.85rem;margin:-.3rem 0 .8rem 4.6rem}
+.btn{display:block;width:100%;text-align:center;border:1px solid #cfd8d4;background:#fff;color:#1d2321;padding:.8rem;border-radius:.7rem;font:inherit;font-weight:600;text-decoration:none;cursor:pointer}
+.btn.primary{background:#49c5a3;border-color:#49c5a3;color:#fff;font-size:1.15rem;padding:1.05rem;margin:1rem 0 .6rem}
+.two{display:flex;gap:.6rem}
+.toast{min-height:1.2rem;color:#13795b;font-size:.85rem;text-align:center;margin:.4rem 0}
+.qr{background:#fff;border:1px solid #dfe5e2;border-radius:.7rem;padding:.6rem;width:15rem;max-width:100%;margin:.6rem auto}
+.qr svg{display:block;width:100%;height:auto}
+.note{color:#66706c;font-size:.85rem}
+.error{color:#b00020}

@@ -19,3 +19,5 @@ code{word-break:break-all;background:#fff;border:1px solid #dfe5e2;padding:.3rem
 .qr svg{display:block;width:100%;height:auto}
 .note{color:#66706c;font-size:.85rem}
 .error{color:#b00020}
+.tz{text-align:center;margin:.4rem 0}
+.tzlink{color:#13795b;font-size:.9rem;font-weight:600}

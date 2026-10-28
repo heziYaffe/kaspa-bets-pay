@@ -7,12 +7,24 @@
   // Amount in KAS: positive decimal, at most 8 decimals (1 sompi), at most 11 integer digits.
   var AMOUNT_RE = /^(0|[1-9]\d{0,10})(\.\d{1,8})?$/;
   var MAX_LABEL = 80;
+  // Telegram bot usernames: 5-32 chars, letters/digits/underscore, must end in "bot".
+  var BOT_RE = /^[A-Za-z][A-Za-z0-9_]{1,28}[Bb][Oo][Tt]$/;
+  var DEFAULT_BOT = "KBetsFriends_bot";
 
   // Ready for future use (local time display). Not called, not sent anywhere.
   function getBrowserTimeZone() {
     try { return Intl.DateTimeFormat().resolvedOptions().timeZone || null; } catch (e) { return null; }
   }
-  window.kaspaBetsPay = { getBrowserTimeZone: getBrowserTimeZone };
+  // Deep link that lets the bot learn the user's time zone: /start tz_<base64url(zone), no padding>.
+  // Only sent if the user taps the link; Telegram start payloads are limited to 64 chars of [A-Za-z0-9_-].
+  function timeZoneStartLink(bot) {
+    var zone = getBrowserTimeZone();
+    if (!zone || !/^[A-Za-z0-9_+\-\/]{1,40}$/.test(zone)) return null;
+    var payload = "tz_" + btoa(zone).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+    if (payload.length > 64) return null;
+    return "https://t.me/" + bot + "?start=" + payload;
+  }
+  window.kaspaBetsPay = { getBrowserTimeZone: getBrowserTimeZone, timeZoneStartLink: timeZoneStartLink };
 
   function $(id) { return document.getElementById(id); }
 
@@ -21,6 +33,8 @@
     var to = (p.get("to") || "").trim().toLowerCase();
     var amount = (p.get("amount") || "").trim();
     var label = (p.get("label") || "").trim();
+    var bot = (p.get("bot") || "").trim().replace(/^@/, "");
+    if (!BOT_RE.test(bot)) bot = DEFAULT_BOT;
     // Backward compatible: ?uri=kaspatest:...?amount=...
     var uri = (p.get("uri") || "").trim();
     if (!to && uri) {
@@ -29,7 +43,7 @@
     }
     if (!ADDR_RE.test(to) || !AMOUNT_RE.test(amount) || !(parseFloat(amount) > 0)) return null;
     label = label.replace(/[\u0000-\u001f\u007f]/g, "").slice(0, MAX_LABEL);
-    return { to: to, amount: amount, label: label, net: to.split(":")[0] };
+    return { to: to, amount: amount, label: label, bot: bot, net: to.split(":")[0] };
   }
 
   function copy(text, what) {
@@ -62,6 +76,9 @@
   $("open").href = payUri;
   $("copy-addr").addEventListener("click", function () { copy(d.to, "Address"); });
   $("copy-amount").addEventListener("click", function () { copy(d.amount, "Amount"); });
+
+  var tzLink = timeZoneStartLink(d.bot);
+  if (tzLink) { $("tz").href = tzLink; $("tz").hidden = false; }
 
   if (typeof qrcode === "function") {
     var qr = qrcode(0, "M");

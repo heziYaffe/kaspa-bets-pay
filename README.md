@@ -19,6 +19,7 @@ https://heziyaffe.github.io/kaspa-bets-pay/?to=<address>&amount=<KAS>&label=<opt
 | `to`      | yes | `kaspa:` or `kaspatest:` address, bech32 charset, 61-63 payload chars |
 | `amount`  | yes | positive decimal KAS, up to 8 decimals |
 | `label`   | no  | shown on the page only (max 80 chars, rendered as plain text) |
+| `bot`     | no  | Telegram bot username for the time zone link (default `KBetsFriends_bot`) |
 
 The legacy form `?uri=kaspatest:<address>?amount=<KAS>` is also accepted.
 
@@ -27,7 +28,10 @@ The page redirects to `<address>?amount=<KAS>`. If no wallet handles it, the pag
 - an **Open in wallet** button,
 - **Copy address** / **Copy amount** buttons,
 - a QR code of the payment URI,
-- a note that testnet needs Kaspium with a testnet-10 (TN10) node added.
+- a note that testnet needs Kaspium with a testnet-10 (TN10) node added,
+- a **Use my local time in the bot** link: opens `https://t.me/<bot>?start=tz_<base64url(time zone), no padding>`
+  so the bot can show times in the user's zone. The zone is read locally with
+  `Intl.DateTimeFormat().resolvedOptions().timeZone` and only leaves the device if the user taps the link.
 
 Invalid or missing parameters show an error and nothing is opened.
 

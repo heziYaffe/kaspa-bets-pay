@@ -1,0 +1,45 @@
+<!doctype html>
+<!--
+  Kaspa Bets win share page. The bot's win card share buttons (X, WhatsApp, Telegram, Facebook, Reddit, LinkedIn)
+  link here with the win in the query string: a=amount, s=side, q=market question, b=bot username, l=language.
+  Link previews use the static, generic og.png below (a static host cannot render a per-win preview image);
+  the post text itself carries the amount. Static page: no backend, no tracking, no cookies, no third-party requests.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'">
+<title>I won on Kaspa Bets</title>
+<meta name="description" content="Bet your friends on Polymarket outcomes. Settled on Kaspa, paid by a contract. Testnet.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kaspa Bets">
+<meta property="og:title" content="I won on Kaspa Bets 🏆">
+<meta property="og:description" content="Bet your friends on Polymarket outcomes. Think you can beat me?">
+<meta property="og:image" content="https://heziyaffe.github.io/kaspa-bets-pay/w/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Kaspa Bets win card">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="I won on Kaspa Bets 🏆">
+<meta name="twitter:description" content="Bet your friends on Polymarket outcomes. Think you can beat me?">
+<meta name="twitter:image" content="https://heziyaffe.github.io/kaspa-bets-pay/w/og.png">
+<link rel="stylesheet" href="w.css">
+</head>
+<body>
+<main>
+  <div class="card">
+    <p class="brand">Kaspa Bets <span class="pill">TESTNET</span></p>
+    <p class="won">🏆 I won</p>
+    <p class="amount" id="amount">tKAS</p>
+    <p class="q" id="q" hidden></p>
+    <p class="side" id="side" hidden></p>
+  </div>
+  <a id="go" class="btn" href="https://t.me/">🎲 Bet your friends too</a>
+  <p class="note">Friends bet each other on Polymarket outcomes; a Kaspa contract holds the stakes and pays the winner.
+    Testnet only: tKAS has no value.</p>
+</main>
+<script src="w.js"></script>
+</body>
+</html>

@@ -50,3 +50,10 @@ Open `index.html` through any static server, e.g. `python3 -m http.server`, then
 ## License
 
 MIT, see [LICENSE](LICENSE).
+
+## Win share page (`w/`)
+
+`https://heziyaffe.github.io/kaspa-bets-pay/w/?a=<amount>&s=<side>&q=<question>&b=<bot>` shows a winner's card and a
+"Bet your friends too" button to the bot. The bot's share buttons (X, WhatsApp, Telegram, Facebook, Reddit, LinkedIn)
+point here. Link previews use the static, generic `w/og.png` (a static host cannot render a per-win preview image);
+the shared post text carries the amount. Query values are only written with `textContent`; the bot name is validated.
